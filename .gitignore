@@ -1,0 +1,9 @@
+node_modules/duo/node_modules/conceal/.idea/conceal.iml
+.idea/
+node_modules
+components
+
+#Hawthorne Project specific:
+build/logo.png
+build/photos
+.DS_Store

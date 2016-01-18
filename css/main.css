@@ -1,0 +1,37 @@
+@import 'necolas/normalize.css';
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #BC8A3A; /* Main Primary color */
+    --gold-1: #FFAD27;
+    --gold-2: #E9A22F;
+    --gold-3: #DE9014;
+    --gold-4: #DA8700;
+
+    --purple: #3E3482; /* Main Secondary color (1) */
+    --purple-1: #4231B9;
+    --purple-2: #3F32A2;
+    --purple-3: #2F209A;
+    --purple-4: #231397;
+
+    --green: #267A65; /* Main Secondary color (2) */
+    --green-1: #1BAF8A;
+    --green-2: #1E9779;
+    --green-3: #0D906F;
+    --green-4: #008E6A;
+
+    --blue: #2D4F7B; /* Main Complement color */
+    --blue-1: #2863B0;
+    --blue-2: #295A99;
+    --blue-3: #184D91;
+    --blue-4: #0B458F;
+}
+
+.container {
+    display: flex;
+    background: var(--blue);
+}
+
