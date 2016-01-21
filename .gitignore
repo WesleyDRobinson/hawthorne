@@ -7,3 +7,5 @@ components
 build/logo.png
 build/photos
 .DS_Store
+build/elements
+js/keys
