@@ -9,3 +9,6 @@ build/photos
 .DS_Store
 build/elements
 js/keys
+build/js
+build/css
+css/helpers

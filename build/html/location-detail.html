@@ -1,0 +1,56 @@
+<template>
+    <div class="section-header">
+        <div class="container">
+            <h2>Location</h2>
+        </div>
+    </div>
+    <div class="section-body">
+        <div class="container">
+            <div class="container">
+                <div class="google-map"></div>
+            </div>
+            <div class="container--vertical">
+                <div class="container">
+                    <h1>9808 Hawthorn Place, Rogers, AR 72758</h1>
+                </div>
+                <div class="container">
+                    <div class="container-key-value">
+                        <div class="key">Directions:</div>
+                        <div class="value">
+                            New Hope Road, East Hwy 94 @
+                            Monte Ne Chicken, turn left, 3.5 Miles to Avalon Subdivision. On left. Go left on
+                            Avalon, Rt on Hawthorne Place. (11 Miles to Promenade Mall)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var map;
+        const initMap = function initMap() {
+            const address = document.querySelector('.main-address').firstElementChild.innerHTML;
+            var location;
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': address}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    location = results[0].geometry.location;
+                } else {
+                    console.log("Geocode was not successful for the following reason: " + status);
+                }
+                var mapOptions = {
+                    center: location,
+                    zoom: 16
+                };
+                map = new google.maps.Map(document.querySelector('.google-map'), mapOptions);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: location
+                });
+            });
+        };
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpxt2jq4g5QigFaYRwcbMG244Q3w0wN0k&callback=initMap">
+    </script>
+</template>

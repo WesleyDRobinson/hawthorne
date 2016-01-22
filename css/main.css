@@ -1,4 +1,4 @@
-@import 'necolas/normalize.css';
+@import 'helpers/normalize.css';
 
 * {
     box-sizing: border-box;

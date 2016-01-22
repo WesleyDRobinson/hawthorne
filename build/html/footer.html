@@ -1,0 +1,33 @@
+<template>
+    <div class="container">
+        <div id="footer-copyright" class="container"></div>
+        <div id="footer-phone-number" class="container"></div>
+        <div id="footer-address" class="container"></div>
+    </div>
+    <script type="text/javascript">
+        var keys = function keys(obj) {
+            var keys = [];
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    keys.push(key);
+                }
+            }
+            return keys;
+        };
+        var data = {
+            'footer-copyright': "© 2015-2016 Prime Real Estate & Development",
+            'footer-phone-number': '(479) 571-1515',
+            'footer-address': '1148 East Stearns Street, Suite 4, Fayetteville AR 72703'
+        };
+        var dataKeys = keys(data);
+        dataKeys.forEach(function (el) {
+            if (typeof el !== 'string') {
+                return;
+            }
+            node = document.createElement('div');
+            text = document.createTextNode(data[el]);
+            node.appendChild(text);
+            document.getElementById(el).appendChild(node);
+        });
+    </script>
+</template>

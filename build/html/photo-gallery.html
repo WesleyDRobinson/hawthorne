@@ -1,0 +1,89 @@
+<template>
+    <div>
+        <div class="section-header">
+            <div class="container">
+                <h2>Photo Gallery</h2>
+            </div>
+        </div>
+        <div class="section-body">
+            <div class="photo-gallery">
+                <div class="container">
+                    <div class="img-key">
+                        <img name="preview" src="photos/2.jpg">
+                    </div>
+                </div>
+                <div class="container-thumbs">
+                    <div class="img-thumb">
+                        <img src="photos/2.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/3.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/4.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/5.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/6.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/7.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/8.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/9.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/10.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/11.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/12.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/13.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/14.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/15.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/16.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/17.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/18.jpg">
+                    </div>
+                    <div class="img-thumb">
+                        <img src="photos/19.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const thumbs = document.querySelector('.container-thumbs');
+        const preview = document.querySelector('.img-key');
+
+        const makeActivePhoto = function makeActivePhoto(e) {
+            var image = e.target;
+            while (image.tagName !== 'IMG') {
+                image = image.firstElementChild;
+            }
+            preview.firstElementChild.src = image.src;
+        };
+        thumbs.addEventListener('click', makeActivePhoto);
+    </script>
+
+</template>
