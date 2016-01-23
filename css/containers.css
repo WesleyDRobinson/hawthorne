@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+
+.container-thumbs {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.container--vertical {
+    flex-direction: column;
+}
+
+.container--wrap {
+    flex-wrap: wrap;
+}
+
+.container-key-value {
+    display: inline-flex;
+    justify-content: center;
+    border: 1px solid var(--purple-4);
+    align-items: center;
+}

@@ -1,0 +1,87 @@
+<template>
+    <div class="container">
+        <div class="forty-percent">
+            <div class="container container--vertical">
+                <div class="auth-fields">
+                    <div class="container">
+                        <div class="admin-login-username">
+                            <label for="admin-login-username"></label>
+                            <input id="admin-login-username" type="text">
+                        </div>
+                        <div class="admin-login-password">
+                            <label for="admin-login-password"></label>
+                            <input id="admin-login-password" type="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="auth-buttons">
+                    <div class="container">
+                        <div id="admin-login-button">
+                            <div class="container">
+                                <button>Login</button>
+                            </div>
+                        </div>
+                        <div id="admin-logout-button">
+                            <div class="container">
+                                <button>Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            var login = document.getElementById('admin-login-button');
+            var logout = document.getElementById('admin-logout-button');
+            var ref = new Firebase('https://hawthorne.firebaseio.com/');
+
+            login.addEventListener("click", function (e) {
+                var username = document.getElementById('admin-login-username').value;
+                var password = document.getElementById('admin-login-password').value;
+
+                function authHandler(error, authData) {
+                    if (error) {
+                        console.log("Login Failed!", error);
+                    } else {
+                        console.log("Authenticated successfully with payload:", authData);
+                    }
+                }
+
+                ref.authWithPassword({
+                    email: username,
+                    password: password
+                }, authHandler);
+
+            });
+
+            logout.addEventListener('click', function (e) {
+
+                function authHandler(error, authData) {
+                    if (error) {
+                        console.log("Logout Failed!", error);
+                    } else {
+                        console.log("Authenticated successfully with payload:", authData);
+                    }
+                }
+
+                ref.authWithPassword({
+                    email: 'w@w.com',
+                    password: 'asdf'
+                }, authHandler);
+            });
+        }());
+        //        var ref = new Firebase('https://hawthorne.firebaseio.com/');
+        //        ref.createUser({
+        //            email: "w@w.com",
+        //            password: "asdf"
+        //        }, function (error, userData) {
+        //            if (error) {
+        //                console.log("Error creating user:", error);
+        //            } else {
+        //                console.log("Successfully created user account with uid:", userData.uid);
+        //            }
+        //        });
+    </script>
+</template>

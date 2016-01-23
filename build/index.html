@@ -5,17 +5,23 @@
     <title>Rebuild Hawthorne</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.20/webcomponents.js"></script>
 
+    <!--elements todo: implement vulcanize to flatten this-->
+    <link rel="import" href="html/admin-login.html">
     <link rel="import" href="html/footer.html">
     <link rel="import" href="html/landing-page.html">
     <link rel="import" href="html/location-detail.html">
-    <link rel="import" href="html/property-information.html">
-    <link rel="import" href="html/property-features.html">
-    <link rel="import" href="html/property-amenities.html">
     <link rel="import" href="html/photo-gallery.html">
+    <link rel="import" href="html/property-amenities.html">
+    <link rel="import" href="html/property-features.html">
+    <link rel="import" href="html/property-information.html">
 
     <link rel="stylesheet" href="css/main.css">
+
+    <!--firebase-->
+    <script async src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
 </head>
 <body>
+<div id="admin-login"></div>
 <div id="landing-page"></div>
 <div id="photo-gallery"></div>
 <div id="property-information"></div>
