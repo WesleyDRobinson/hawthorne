@@ -6,100 +6,41 @@
             </div>
         </div>
         <div class="section-body">
-            <div class="residential-details">
-                <div class="container-key-value">
-                    <div class="key">List:</div>
-                    <div class="value">$485,000</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">ML#:</div>
-                    <div class="value">732809 (active)</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">County:</div>
-                    <div class="value">Benton</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Bedrooms:</div>
-                    <div class="value">5</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Type:</div>
-                    <div class="value">n/a</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Full-Bath/Half-Bath:</div>
-                    <div class="value">3/1</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Subdivision:</div>
-                    <div class="value">Avalon</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Approx. Heated SF:</div>
-                    <div class="value">4,013</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">School Dist:</div>
-                    <div class="value">Rogers</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">SF Source:</div>
-                    <div class="value">Seller</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Garage/Cpt:</div>
-                    <div class="value">3/Garage/Attached, Detached</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Driveway:</div>
-                    <div class="value">Concrete</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Approx. Year Built:</div>
-                    <div class="value">2005</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Covenant:</div>
-                    <div class="value">Lot/Bk: 1.350/1</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Levels:</div>
-                    <div class="value">2</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Disabled Access:</div>
-                    <div class="value">No</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Disclosure:</div>
-                    <div class="value">Yes</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Parcel ID:</div>
-                    <div class="value">1516605-000</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Taxes:</div>
-                    <div class="value">$4,102</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Landscape:</div>
-                    <div class="value">All</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Lot Dimensions:</div>
-                    <div class="value">200x288x200x288</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Lot Description:</div>
-                    <div class="value">In Subdivision, Level, Sidewalk, View, Wooded</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Legal:</div>
-                    <div class="value">Lot</div>
-                </div>
+            <div class="container">
+                <div id="internal-property-info"></div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function () {
+            var div = function div(input) {
+                var output = document.createElement('div');
+                output.setAttribute('class', input);
+                return output;
+            };
+            var addText = function addText(el, str) {
+                if (typeof str !== 'string') return el;
+
+                return el.appendChild(document.createTextNode(str));
+            };
+            var ref = new Firebase('https://hawthorne.firebaseio.com/appData/prop-details');
+            ref.once('value', function (snapshot) {
+                // create, build and insert elements dynamically
+                snapshot.forEach(function (snap) {
+                    var key = snap.key();
+                    var value = snap.val();
+                    var containerKV = div('container-key-value');
+                    var keyContainer = div('key');
+                    var valueContainer = div('value');
+
+                    addText(containerKV, key + ' : ' + value);
+
+                    document.getElementById('internal-property-info').appendChild(containerKV);
+                });
+
+            }, function (err) {
+                console.error('property-info Firebase error', err);
+            });
+        }());
+    </script>
 </template>

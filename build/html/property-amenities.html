@@ -6,31 +6,45 @@
             </div>
         </div>
         <div class="section-body">
-            <div class="residential-details">
-                <div class="container-key-value">
-                    <div class="key">Amenities:</div>
-                    <div class="value">Attic Storage, Blinds, Built-Ins, Cathedral
-                        Ceiling, Ceiling Fans, Ceramic Tile Counters, Granite Counters, Pantry, Progrmbl Thermost,
-                        Skylight, Walk-In Closets, Washer/Dryer Connection
-                    </div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Appliances:</div>
-                    <div class="value">Countertop, Dishwasher, Dryer, Electric, Garbage Disposal,
-                        Hood, Microwave Vent, Range, Refrigerator, Washer
-                    </div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Equipment:</div>
-                    <div class="value">Central Vacuum, Garage Door Opener, Security System, Smoke
-                        Detector, Sprinkler, Wired for Sound
-                    </div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Water/Lake:</div>
-                    <div class="value">Beaver, Seasonal View</div>
-                </div>
+            <div class="container">
+                <div id="internal-property-amenities"></div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function () {
+            var div = function div (input) {
+                var output = document.createElement('div');
+                output.setAttribute('class', input);
+                return output;
+            };
+            var addText = function addText (el, str) {
+                if (typeof str !== 'string') return el;
+
+                return el.appendChild(document.createTextNode(str));
+            };
+            var ref = new Firebase('https://hawthorne.firebaseio.com/appData/amenities');
+            ref.once('value', function (snapshot) {
+
+                // create, build and insert elements dynamically
+                snapshot.forEach(function (snap) {
+                    var key = snap.key();
+                    var value = snap.val();
+                    var containerKV = div('container-key-value');
+                    var keyCont = div('key');
+                    var valueCont = div('value');
+
+                    addText(keyCont, key + ' : ');
+                    containerKV.appendChild(keyCont);
+                    addText(valueCont, value);
+                    containerKV.appendChild(valueCont);
+
+                    document.getElementById('internal-property-amenities').appendChild(containerKV);
+                });
+
+            }, function (err) {
+                console.error('property-amenities-features Firebase error', err);
+            });
+        }());
+    </script>
 </template>

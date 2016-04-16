@@ -8,7 +8,12 @@
   },
   "author": "Wesley Robinson",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "firebase": "^2.4.2",
+    "superagent": "^1.8.3"
+  },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "gulp": "^3.9.0",

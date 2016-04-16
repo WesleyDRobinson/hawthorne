@@ -8,5 +8,4 @@ const fillElements = function fillElements() {
     });
 };
 
-
 document.body.onload = fillElements;

@@ -1,38 +1,31 @@
 <template>
     <div class="container">
-        <div id="footer-copyright" class="container"></div>
-        <div id="footer-phone-number" class="container"></div>
-        <div id="footer-address" class="container"></div>
+        <div id="footer-copyright"></div>
+        <div id="footer-phone-number"></div>
+        <div id="footer-address"></div>
     </div>
+
     <script type="text/javascript">
-        var keys = function keys(obj) {
-            var keys = [];
-            for (var key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    keys.push(key);
-                }
-            }
-            return keys;
-        };
+        (function () {
+            var ref = new Firebase('https://hawthorne.firebaseio.com/appData/footer');
+            ref.once('value', function (data) {
 
-        // todo: add Firebase persistence and "get data" step
-        var data = {
-            'footer-copyright': "© 2015-2016 Prime Real Estate & Development",
-            'footer-phone-number': '(479) 571-1515',
-            'footer-address': '1148 East Stearns Street, Suite 4, Fayetteville AR 72703'
-        };
-        var dataKeys = keys(data);
+                // create, build and insert elements dynamically
+                data.forEach(function (el) {
+                    key = el.key();
+                    if (typeof key !== 'string') {
+                        return;
+                    }
+                    node = document.createElement('div');
+                    text = document.createTextNode(el.val());
+                    node.appendChild(text);
+                    node.classList.add('container');
+                    document.getElementById(key).appendChild(node);
+                });
 
-        // create, build and insert elements dynamically
-        dataKeys.forEach(function (el) {
-            if (typeof el !== 'string') {
-                return;
-            }
-            node = document.createElement('div');
-            text = document.createTextNode(data[el]);
-            node.appendChild(text);
-            document.getElementById(el).appendChild(node);
-        });
-
+            }, function (err) {
+                console.error(err);
+            });
+        }());
     </script>
 </template>

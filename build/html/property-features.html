@@ -6,72 +6,44 @@
             </div>
         </div>
         <div class="section-body">
-            <div class="residential-details">
-                <div class="container-key-value">
-                    <div class="key">A/C:</div>
-                    <div class="value">2/Central</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Heat Sys:</div>
-                    <div class="value">2/Central</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Exterior:</div>
-                    <div class="value">Brick</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Patio:</div>
-                    <div class="value">Covered, Enclosed, Patio, Stone</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Fencing:</div>
-                    <div class="value">Backyard</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Roads:</div>
-                    <div class="value">Surface Paved</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Fireplace:</div>
-                    <div class="value">2/Bedroom, Family Room</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Utilities:</div>
-                    <div class="value">Electric, Septic, Water Public</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Floor:</div>
-                    <div class="value">Other-Specify In Rmrks, Wood</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Water Heater:</div>
-                    <div class="value">2/Electric, Hot Wtr Recirculation, On Demand (In-line)</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Foundation:</div>
-                    <div class="value">Concrete Slab</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Windows:</div>
-                    <div class="value">n/a</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Det Bldg:</div>
-                    <div class="value">Storage Building</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Detached Building:</div>
-                    <div class="value">1</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Exclusions:</div>
-                    <div class="value">n/a</div>
-                </div>
-                <div class="container-key-value">
-                    <div class="key">Roof:</div>
-                    <div class="value">Architectural Shingle</div>
-                </div>
-            </div>
+            <div id="internal-property-features"></div>
         </div>
     </div>
+    <script type="text/javascript">
+        (function () {
+
+            var div = function div(input) {
+                var output = document.createElement('div');
+                output.setAttribute('class', input);
+                return output;
+            };
+            var addText = function addText(el, str) {
+                if (typeof str !== 'string') return el;
+
+                return el.appendChild(document.createTextNode(str));
+            };
+
+            var ref = new Firebase('https://hawthorne.firebaseio.com/appData/prop-details');
+            ref.once('value', function (snapshot) {
+                // create, build and insert elements dynamically
+                snapshot.forEach(function (snap) {
+                    var key = snap.key();
+                    var value = snap.val();
+                    var containerKV = div('container-key-value');
+                    var keyCont = div('key');
+                    var valueCont = div('value');
+
+                    addText(keyCont, key + ' : ');
+                    containerKV.appendChild(keyCont);
+                    addText(valueCont, value);
+                    containerKV.appendChild(valueCont);
+
+                    document.getElementById('internal-property-features').appendChild(containerKV);
+                });
+
+            }, function (err) {
+                console.error('property-features Firebase error', err);
+            });
+        }());
+    </script>
 </template>

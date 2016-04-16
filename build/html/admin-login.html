@@ -46,6 +46,7 @@
                         console.log("Login Failed!", error);
                     } else {
                         console.log("Authenticated successfully with payload:", authData);
+                        document.getElementById('user-logo').setAttribute('src', authData.password.profileImageURL);
                     }
                 }
 
