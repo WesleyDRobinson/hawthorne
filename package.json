@@ -4,7 +4,7 @@
   "description": "rebuild of the hawthorne site",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev":"gulp build && gulp watch"
   },
   "author": "Wesley Robinson",
   "license": "MIT",
